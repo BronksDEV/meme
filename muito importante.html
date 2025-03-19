@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Escolha uma Opção</title>
+  <style>
+    /* Atualização do background para um gradiente romântico */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Adicionando corações via pseudo-elementos para decorar o fundo */
+    body::before,
+    body::after {
+      content: "❤️   ❤️   ❤️   ❤️   ❤️";
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    body::before {
+      top: 10%;
+      left: 5%;
+      transform: rotate(-15deg);
+    }
+    body::after {
+      bottom: 10%;
+      right: 5%;
+      transform: rotate(15deg);
+    }
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 1;
+      max-width: 90%;
+    }
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+    button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #sim {
+      background-color: #28a745;
+      color: #fff;
+    }
+    #sim:hover {
+      background-color: #218838;
+    }
+    #nao {
+      background-color: #dc3545;
+      color: #fff;
+      position: relative;
+    }
+    #nao:hover,
+    #nao:active {
+      /* A ação de mover será feita via JavaScript */
+    }
+    /* Media Query para dispositivos móveis */
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.5rem;
+      }
+      h1 {
+        font-size: 1.2rem;
+      }
+      button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+      /* Ajuste nos pseudo-elementos para melhor visualização em telas menores */
+      body::before,
+      body::after {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Posso fazer um pedido??</h1>
+    <a href="https://www.youtube.com/shorts/8tvFKtbyn_A">
+        <button id="sim">Sim</button>
+      </a>
+    <button id="nao">Não</button>
+  </div>
+
+  <script>
+    const botaoNao = document.getElementById('nao');
+
+    // Função para reposicionar o botão "Não" de forma aleatória dentro da viewport
+    function moverBotao() {
+      const larguraJanela = window.innerWidth;
+      const alturaJanela = window.innerHeight;
+      const larguraBotao = botaoNao.offsetWidth;
+      const alturaBotao = botaoNao.offsetHeight;
+
+      // Calcula novas posições garantindo que o botão fique inteiramente visível
+      const novoLeft = Math.random() * (larguraJanela - larguraBotao);
+      const novoTop = Math.random() * (alturaJanela - alturaBotao);
+
+      botaoNao.style.position = 'absolute';
+      botaoNao.style.left = novoLeft + 'px';
+      botaoNao.style.top = novoTop + 'px';
+    }
+
+    // Eventos para desktop (hover) e dispositivos móveis (touchstart)
+    botaoNao.addEventListener('mouseover', moverBotao);
+    botaoNao.addEventListener('touchstart', function(e) {
+      moverBotao();
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>
